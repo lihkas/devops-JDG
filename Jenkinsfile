@@ -46,7 +46,7 @@ pipeline {
 			steps{
 			    // input 'Do you want to deploy to dev servers?'
 				script {
-					sshagent(['akhil-sshid']){
+					//sshagent(['akhil-sshid']){
 				//sh returnStatus: true, script: 'ssh -o StrictHostKeyChecking=no akhil@${DEV_IP} docker rm -f dockercontainer'
 				//sh 'ssh -o StrictHostKeyChecking=no akhil@${DEV_IP} whoami'
 				//sshPublisher(publishers: [sshPublisherDesc(configName: 'vm-demo-one', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''cd /home/akhil;mkdir brand;touch jenkinswork;uptime;''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
@@ -57,7 +57,7 @@ pipeline {
                                               //sh 'docker login -u neekohslihka -p $dockerhubcreds'
 					      //sh returnStatus: true, script: "ssh -o StrictHostKeyChecking=no akhil@${DEV_IP} docker run -d -p 8080:8080 --name=dockercontainer neekohslihka/akhil-testone:${DOCKER_TAG}"	
 				//}
-					}
+					//}
 				//withCredentials([string(credentialsId: 'nexus-docker', variable: 'nexusPwd')]) {
 					//sh returnStatus: true, script: "ssh ec2-user@${DEV_IP} docker login -u admin -p ${nexusPwd} ${NEXUS_HOST}"
 			    //}
