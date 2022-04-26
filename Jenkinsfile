@@ -47,7 +47,7 @@ pipeline {
 			    // input 'Do you want to deploy to dev servers?'
 				script {
 					sshagent(['jenkinstodev']) {
-				sh returnStatus: true, script: 'ssh -o StrictHostKeyChecking=no akhil@${DEV_IP} docker rm -f dockercontainer'
+				sh returnStatus: true, script: 'ssh -o StrictHostKeyChecking=no akhil@15.206.195.239 docker rm -f dockercontainer'
 				//sh 'ssh -o StrictHostKeyChecking=no akhil@${DEV_IP} whoami'
 				//sshPublisher(publishers: [sshPublisherDesc(configName: 'vm-demo-one', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''cd /home/akhil;mkdir brand;touch jenkinswork;uptime;''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
 				//sshPublisher(publishers: [sshPublisherDesc(configName: 'vm-demo-one', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''docker rm -f dockercontainer;docker run -d -p 8080:8080 --name=dockercontainer neekohslihka/akhil-testone:36e54d8f97f1e26b5296cc4083d95c26cb848e53 >> dockerop.txt;''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
