@@ -46,18 +46,18 @@ pipeline {
 			steps{
 			    // input 'Do you want to deploy to dev servers?'
 				script {
-					//sshagent(['akhil-sshid']){
-				//sh returnStatus: true, script: 'ssh -o StrictHostKeyChecking=no akhil@${DEV_IP} docker rm -f dockercontainer'
+					sshagent(['jenkinstodev']) {
+				sh returnStatus: true, script: 'ssh -o StrictHostKeyChecking=no akhil@${DEV_IP} docker rm -f dockercontainer'
 				//sh 'ssh -o StrictHostKeyChecking=no akhil@${DEV_IP} whoami'
 				//sshPublisher(publishers: [sshPublisherDesc(configName: 'vm-demo-one', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''cd /home/akhil;mkdir brand;touch jenkinswork;uptime;''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-				sshPublisher(publishers: [sshPublisherDesc(configName: 'vm-demo-one', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''docker rm -f dockercontainer;docker run -d -p 8080:8080 --name=dockercontainer neekohslihka/akhil-testone:36e54d8f97f1e26b5296cc4083d95c26cb848e53 >> dockerop.txt;''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+				//sshPublisher(publishers: [sshPublisherDesc(configName: 'vm-demo-one', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''docker rm -f dockercontainer;docker run -d -p 8080:8080 --name=dockercontainer neekohslihka/akhil-testone:36e54d8f97f1e26b5296cc4083d95c26cb848e53 >> dockerop.txt;''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
 				//sh returnStatus: true, script: "ssh akhil@${DEV_IP} uptime"
 				//withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhubcreds')]) {
 
                                               //sh 'docker login -u neekohslihka -p $dockerhubcreds'
-					      //sh returnStatus: true, script: "ssh -o StrictHostKeyChecking=no akhil@${DEV_IP} docker run -d -p 8080:8080 --name=dockercontainer neekohslihka/akhil-testone:${DOCKER_TAG}"	
+					      sh returnStatus: true, script: "ssh -o StrictHostKeyChecking=no akhil@${DEV_IP} docker run -d -p 8080:8080 --name=dockercontainer neekohslihka/akhil-testone:${DOCKER_TAG}"	
 				//}
-					//}
+					}
 				//withCredentials([string(credentialsId: 'nexus-docker', variable: 'nexusPwd')]) {
 					//sh returnStatus: true, script: "ssh ec2-user@${DEV_IP} docker login -u admin -p ${nexusPwd} ${NEXUS_HOST}"
 			    //}
