@@ -49,8 +49,7 @@ pipeline {
 					sshagent(['akhil-sshid']){
 				//sh returnStatus: true, script: 'ssh -o StrictHostKeyChecking=no akhil@${DEV_IP} docker rm -f dockercontainer'
 				//sh 'ssh -o StrictHostKeyChecking=no akhil@${DEV_IP} whoami'
-				sshPublisher(publishers: [sshPublisherDesc(configName: 'vm-demo-one', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''cd /home/akhil;
-mkdir brand;touch jenkinswork;uptime;''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+				//sshPublisher(publishers: [sshPublisherDesc(configName: 'vm-demo-one', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''cd /home/akhil;mkdir brand;touch jenkinswork;uptime;''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
 				sshPublisher(publishers: [sshPublisherDesc(configName: 'vm-demo-one', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''docker run -d -p 8080:8080 --name=dockercontainer neekohslihka/akhil-testone:${DOCKER_TAG};''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
 				//sh returnStatus: true, script: "ssh akhil@${DEV_IP} uptime"
 				//withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhubcreds')]) {
