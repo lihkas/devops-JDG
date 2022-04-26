@@ -4,7 +4,7 @@ pipeline {
 		//PATH = "${PATH}:${getMavenPath()}"
 		DOCKER_TAG = "${getLatestCommitId()}"
 		//NEXUS_HOST = "172.31.45.145:8083"
-		DEV_IP = "3.108.54.171"
+		DEV_IP = "15.206.195.239"
 	}
     stages {
 	
